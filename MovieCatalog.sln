@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieCatalog.View", "MovieCatalog.View\MovieCatalog.View.csproj", "{213E1A16-9D74-4D19-9F89-862632F02DF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieCatalog.Domain", "MovieCatalog.Domain\MovieCatalog.Domain.csproj", "{32804ED8-849B-4DA3-A839-AAAE44D6D839}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{213E1A16-9D74-4D19-9F89-862632F02DF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{213E1A16-9D74-4D19-9F89-862632F02DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{213E1A16-9D74-4D19-9F89-862632F02DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{213E1A16-9D74-4D19-9F89-862632F02DF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32804ED8-849B-4DA3-A839-AAAE44D6D839}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32804ED8-849B-4DA3-A839-AAAE44D6D839}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32804ED8-849B-4DA3-A839-AAAE44D6D839}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32804ED8-849B-4DA3-A839-AAAE44D6D839}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
