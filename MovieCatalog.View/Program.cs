@@ -1,5 +1,9 @@
+using System.Diagnostics.Metrics;
 using MovieCatalog.Infrastructure;
+using MovieCatalog.View.Handlers;
 using Prometheus;
+using Serilog;
+using Serilog.Sinks.Grafana.Loki;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,8 +13,18 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.GrafanaLoki("http://host.docker.internal:3100")
+    .CreateLogger();
+
+builder.Logging.AddSerilog().SetMinimumLevel(LogLevel.Information);
+
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton(new Manager());
+builder.Services.AddExceptionHandler<CustomExceptionHandler>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,10 +36,9 @@ app.UseSwaggerUI(options =>
 });
 
 
-/*app.UseHttpsRedirection();*/
-
-app.UseAuthorization();
 app.UseHttpMetrics();
+app.UseMetricServer();
+
 app.MapControllers();
 app.MapMetrics("/metrics");
 

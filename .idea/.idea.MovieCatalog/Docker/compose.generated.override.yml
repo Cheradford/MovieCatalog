@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  moviecatalog.view:
+    build:
+      context: "C:\\Users\\User\\RiderProjects\\MovieCatalog"
+      dockerfile: "MovieCatalog.View/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/MovieCatalog.View.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "moviecatalog.view:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\User\\RiderProjects\\MovieCatalog\\MovieCatalog.View:/app:rw"
+    - "C:\\Users\\User\\RiderProjects\\MovieCatalog:/src:rw"
+    - "C:\\Users\\User\\.nuget\\packages:/home/app/.nuget/packages"
+    working_dir: "/app"
