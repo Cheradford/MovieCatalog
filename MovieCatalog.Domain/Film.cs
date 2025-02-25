@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Text.Json.Serialization;
 
 namespace MovieCatalog.Domain;
@@ -22,7 +23,7 @@ public class Film : ObjectId
         set
         {
             if (value != null)
-                ReleaseDate = DateOnly.Parse(value);
+                ReleaseDate = DateOnly.ParseExact(value,"dd.MM.yyyy");
         }
     }
     [JsonIgnore]

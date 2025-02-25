@@ -25,15 +25,6 @@ services:
       - "9090:9090"
     networks:
       - my_network
-
-  promtail:
-    image: grafana/promtail:latest
-    volumes:
-      - /var/log:/var/log
-      - ./MovieCatalog.View/promtail-config.yaml:/etc/promtail/config.yml
-    command: -config.file=/etc/promtail/config.yml
-    networks:
-      - my_network
     
   loki:
     image: grafana/loki:latest

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieCatalog.Domain;
 using MovieCatalog.Infrastructure;
-
+using Serilog;
 namespace MovieCatalog.View.Controllers;
 
 [ApiController]

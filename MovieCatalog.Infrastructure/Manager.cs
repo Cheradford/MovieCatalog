@@ -4,10 +4,36 @@ namespace MovieCatalog.Infrastructure;
 
 public class Manager
 {
-    private List<Film> Films = new List<Film>();
-    private List<Note> Notes = new List<Note>();
-    private List<Review> Reviews = new List<Review>();
+    private List<Film> Films = new List<Film>
+    {
+        new Film {Id = 1, Title = "Начало", Description = "Захватывающий триллер", Release = "16.07.2010" },
+        new Film {Id = 2, Title = "Матрица", Description = "Классика научной фантастики", Release = "31.03.1999" },
+        new Film {Id = 3, Title = "Интерстеллар", Description = "Путешествие сквозь пространство и время", Release = "07.11.2014" },
+        new Film {Id = 4, Title = "Темный рыцарь", Description = "Легендарная история о Бэтмене", Release = "18.07.2008" }
+    };
+    private List<Note> Notes = new List<Note>
+    {
+        new Note { Text = "Отличная сцена в конце!", Timecode = "02:30:15", FilmId = 1 },
+        new Note { Text = "Интересный диалог здесь.", Timecode = "01:15:42", FilmId = 2 },
+        new Note { Text = "Красивые кадры!", Timecode = "00:45:20", FilmId = 3 },
+        new Note { Text = "Неожиданный поворот событий.", Timecode = "01:55:10", FilmId = 1 },
+        new Note { Text = "Отличная игра актеров.", Timecode = "00:32:45", FilmId = 2 },
+        new Note { Text = "Глубокий смысл сцены.", Timecode = "01:10:30", FilmId = 3 },
+        new Note { Text = "Великолепный экшен!", Timecode = "01:45:50", FilmId = 4 }
+    };
+    private List<Review> Reviews = new List<Review>
+    {
+        new Review { FilmId = 1, Status = Status.Watched, Rating = 9 },
+        new Review { FilmId = 2, Status = Status.Watching, Rating = 8 },
+        new Review { FilmId = 3, Status = Status.WillBeWatched, Rating = null },
+        new Review { FilmId = 4, Status = Status.Watched, Rating = 10 }
+    };
 
+    public Manager()
+    {
+        
+    }
+    
     #region Films
     public Film? GetFilmById(int id)
     {
