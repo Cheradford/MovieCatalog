@@ -18,7 +18,7 @@ docker-compose up -d --build
 - **OpenTelemetry** — инструмент для сбора метрик и трассировки запросов.
 ## OpenAPI
 
-OpenAPI доступен в виде Swagger и спецификация находится в файле [openapi.txt](Media/openapi.txt).
+OpenAPI доступен в виде Swagger и спецификация находится в файле [openapi.yaml](Media/openapi.yaml).
 Сервис запускается на порту **8080**.
 ## API
 
