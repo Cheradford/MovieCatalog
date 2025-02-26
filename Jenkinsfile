@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'git@github.com/Cheradford/MovieCatalog.git'
+                git branch: 'main', url: 'git@github.com:Cheradford/MovieCatalog.git'
             }
         }
 
