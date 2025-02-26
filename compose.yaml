@@ -13,6 +13,7 @@ services:
     depends_on:
       - prometheus
       - grafana
+      - tempo
     networks:
       - my_network
 
@@ -25,7 +26,7 @@ services:
       - "9090:9090"
     networks:
       - my_network
-    
+  
   loki:
     image: grafana/loki:latest
     ports:
@@ -46,6 +47,32 @@ services:
       - "3000:3000"
     volumes:
       - grafana-data:/var/lib/grafana
+    networks:
+      - my_network
+  
+  otel-collector:
+    image: otel/opentelemetry-collector:latest
+    container_name: otel-collector
+    volumes:
+      - ./MovieCatalog.View/otel-collector-config.yaml:/etc/otel-collector-config.yaml
+    command: [ "--config=/etc/otel-collector-config.yaml" ]
+    ports:
+      - "4317:4317"  # OTLP gRPC
+    networks:
+      - my_network
+    depends_on:
+      - tempo
+  
+  tempo:
+    image: grafana/tempo:latest
+    container_name: tempo
+    command: ["-config.file=/etc/tempo.yaml"]
+    volumes:
+      - ./MovieCatalog.View/tempo.yaml:/etc/tempo.yaml
+    ports:
+      - "3200:3200"
+      - "4318:4318"  # OTLP HTTP
+      - "9411:9411"  # Zipkin
     networks:
       - my_network
 

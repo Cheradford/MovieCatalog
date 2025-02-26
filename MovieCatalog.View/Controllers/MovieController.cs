@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieCatalog.Domain;
 using MovieCatalog.Infrastructure;
+using OpenTelemetry.Trace;
 using Serilog;
 namespace MovieCatalog.View.Controllers;
 
@@ -10,19 +11,31 @@ public class MovieController: ControllerBase
 {
     private static ILogger<MovieController> _logger;
     private Manager Manager { get; set; }
-    
-    public MovieController(ILogger<MovieController> logger, Manager manager)
+    private readonly Tracer _tracer;
+    public MovieController(ILogger<MovieController> logger, Manager manager, TracerProvider tracerProvider)
     {
         _logger = logger;
         Manager = manager;
+        _tracer = tracerProvider.GetTracer("MovieController");
     }
     
     [HttpGet("{id}")]
     public IActionResult GetFilmById(int id)
     {
-        var film = Manager.GetFilmById(id);
-        if(film == null) return NotFound();
-        return Ok(film);
+        using (var span = _tracer.StartActiveSpan("GetByFilmId"))
+        {
+            span.SetAttribute("id", id.ToString());
+            
+            var film = Manager.GetFilmById(id);
+            if (film == null)
+            {
+                span.AddEvent("Film not founded");
+                return NotFound();
+            }
+            span.AddEvent("Film founded");
+            return Ok(film);
+        }
+
     }
     
     [HttpGet("films")]
