@@ -26,6 +26,8 @@ public class MovieController: ControllerBase
         {
             span.SetAttribute("id", id.ToString());
             
+            if(id == 6) throw new Exception($"Illegal id={id}");
+            
             var film = Manager.GetFilmById(id);
             if (film == null)
             {
